@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui">
+<h:head>
+<h:outputStylesheet name="css/viewcars.css" />
+
+<h:outputStylesheet name="css/font-awesome.css" />
+<h:outputStylesheet name="css/font-awesome.min.css" />
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,600,400italic,600italic,700' rel='stylesheet' type='text/css'></link>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+   <h:outputScript name="js/menuheader.js" />    
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+</h:head>
+<h:body style="height:100%;">
+
+ <ui:composition style="height:100%;">
+    
+<div id="header" >
+  <div class="logo">
+    <a href="viewCars">Bar<span>Application</span></a>
+   
+  </div>
+   <div align="right">
+    <p:outputLabel style="font-size: 15px; margin-right:18px;	color: #fff; margin-top:15px;" value="#{headerController.userName}" />
+    </div>
+</div>
+
+
+<a class="mobile">MENU</a>
+
+
+
+
+  <div class="sidebar"  style="background:#171717; height: 100%">
+    <ul id="nav">
+      <li><a class="selected" href="mlanding">Home</a></li>
+      <li><a href="mvenuesummary">Venue Summary</a></li>
+      <li><a href="mparlist">Par List</a></li>
+            <li><a href="mmyprofile">My Profile</a></li>
+                  <li><a href="mchangepassword">Change Password</a></li>
+                  <li>
+                 <p:commandLink style="width: 250px;background:#171717;	float: left;  color: #ccc;
+  display: block;
+  padding: 10px;
+  font-size: 0.8em;
+  border-bottom: 1px solid #444;
+-webkit-transition: all 0.2s ease;
+-moz-transition: all 0.2s ease;
+-ms-transition: all 0.2s ease;
+-o-transition: all 0.2s ease;
+transition: all 0.2s ease; " value="Logout"   action="#{headerController.logout}" />
+                          </li>
+                  
+            
+      
+    </ul>
+    
+ 
+
+</div>
+
+
+ 
+ 
+ </ui:composition>
+</h:body>
+</html>

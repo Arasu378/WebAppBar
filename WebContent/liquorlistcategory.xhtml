@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<h:outputStylesheet name="css/liquorlistcategory.css"/>
+
+<title>Liquor Category</title>
+</h:head>
+<h:body>
+
+ <div id="header">
+		<ui:insert name="header" >
+		  <ui:include src="header.xhtml" />
+		</ui:insert>
+	    </div>
+<div align="center" id="liquorcategoryBackground">
+<p:outputLabel value="#{liquorlistCategoryController.categoryName}" />
+<div align="left" class="ui-fluid">
+<h:form >
+<p:messages />
+  <p:repeat value="#{liquorlistCategoryController.liquorDataList}" var="liquorService">
+        <h:panelGrid columns="2" style="margin-left:40px;" columnClasses="logo,detail">
+        <h:commandLink action="#{liquorlistCategoryController.nextPage(liquorService)}">
+     
+                <p:graphicImage height="75px" width="75px" url="#{liquorService.pictureURL}"/> 
+           </h:commandLink>
+ 
+            <p:outputPanel style="margin-left:40px;">
+                <h:panelGrid columns="2" cellpadding="2" >
+               
+ 
+                    <h:outputText value="Name : " />
+                    <h:outputText value="#{liquorService.liquorName}" style="font-weight: bold"/>
+ 
+                    <h:outputText value="Quantity : " />
+                    <h:outputText value="#{liquorService.liquorCapacity} ML" style="font-weight: bold"/>
+ 
+                    <h:outputText value="Category : " />
+                    <h:outputText value="#{liquorService.category}" style="font-weight: bold"/>
+                    
+                     
+                </h:panelGrid>
+            </p:outputPanel>
+        </h:panelGrid>
+        <hr />
+    </p:repeat>
+
+</h:form>
+</div>
+</div>
+
+
+</h:body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui">
+     
+    <h:head>
+    
+
+<h:outputStylesheet name="css/viewcars.css" />
+<h:outputStylesheet name="css/font-awesome.css" />
+<h:outputStylesheet name="css/font-awesome.min.css" />
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,600,400italic,600italic,700' rel='stylesheet' type='text/css'></link>
+        <title>Dashboard</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+     
+    </h:head>
+     
+    <h:body>
+   
+
+
+
+
+
+
+ <ui:insert name="header" >
+		  <ui:include src="menuheader.xhtml" />
+		</ui:insert>
+
+  <div class="content">
+    <p:outputLabel  id="venueName" style="font-size:20px;" value="#{landingController.venue}"/>
+<div align="center">
+<p:commandButton value="Add Bar" style="color: #fff;text-shadow: 0 1px #000;background: #990012;padding: 5px;font-weight: 300;" onclick="PF('wdialog').show();" />
+</div>
+
+    <div id="box">
+     <div class="box-top" align="center">Bar List</div>
+     <div class="box-panel">
+     <div class="ui-fluid" id="dataTable">
+<p:dataTable var="barService" value="#{landingController.barlists}"   rowIndexVar="index">
+    <p:column headerText="S.no" style="width:50px;">
+    <div align="center">
+    <p:outputLabel id="commandLinkItem" value="#{index + 1}" />
+    </div>
+    </p:column>
+ 
+    <p:column headerText="Bar Name">
+    <div align="center">
+            <p:outputLabel  value="#{barService.barName}" />
+    </div>
+    </p:column>
+ 
+    <p:column headerText="Created On">
+        <div align="center">
+                <p:outputLabel   value="#{barService.createdOn}"  />
+    </div>
+    </p:column>
+     <p:column headerText="Actions">
+        <div align="center">
+       
+<h:panelGrid columns="3">
+<p:commandButton value="View" icon="resources/img/ic_pageview_white_18dp_1x.png"  style="color: #fff;text-shadow: 0 1px #000;background: #990012;padding: 5px;font-weight: 300;" action="#{landingController.BarItemClick(barService)}" >
+</p:commandButton>
+
+<p:commandButton value="Edit"   icon="fa fa-fw fa-edit" style="color: #fff;text-shadow: 0 1px #000;background: #990012;padding: 5px;font-weight: 300;" onclick="PF('wdialogupdate').show();" action="#{basicController.updatebarid(barService)}" />
+<p:commandButton value="Delete"  icon="fa fa-fw fa-remove" style="color: #fff;text-shadow: 0 1px #000;background: #990012;padding: 5px;font-weight: 300;"  onclick="PF('deletedialog').show();" action="#{basicController.deletebarid(barService)}" />
+</h:panelGrid>
+
+
+    </div>
+    </p:column>
+ 
+</p:dataTable>
+</div>
+     
+     
+     </div>
+    </div>
+
+  
+
+
+  </div>
+
+<div align="center" class="ui-fluid">
+<h:form >
+      <p:dialog  modal="true"  id="dialog" widgetVar="wdialog" responsive="true" header="Enter Bar Name" closeOnEscape="true" draggable="false"  resizable="false">
+<h:form id="form_dialog">
+<div align="center" id="input_dialog">
+<p:panelGrid columns="3"> 
+<p:outputLabel value="Enter Bar Name : " />
+   <p:inputText id="bar_Name" value="#{basicController.bar_Name}" style="height:30px;" onchange="insertbar()" binding="#{input1}"  immediate="true"   >
+       <p:ajax event="keyup" update="barnameinsert" />
+  
+   </p:inputText>
+            <p:message id="barnameinsert" for="bar_Name" />
+   
+   </p:panelGrid>
+</div>
+<div align="center" id="input_buttonfirst" style="margin-top:10px;">
+   <p:commandButton id="insertbar_new" style="color: #fff;text-shadow: 0 1px #000;background: #990012;padding: 5px;font-weight: 300;" value="Save" action="#{basicController.clicked(input1.value)}" onclick="PF('wdialog').hide();" update="form_dialog"/>
+</div>
+</h:form>
+        </p:dialog>
+    
+    </h:form>
+    </div>
+<div align="center">
+
+<h:form id="form2" >
+   
+ 
+       <p:dialog modal="true" id="dialog" widgetVar="wdialogupdate" responsive="true" header="Update Bar Name" closeOnEscape="true" draggable="false"  resizable="false">
+
+  <div align="center" id="input_dialog">
+    <h:panelGrid columns="3">
+    <p:outputLabel value="Update Bar Name : " />
+  
+     <p:inputText id="bar_NameUpdate" value="#{basicController.bar_NameUpdate}" style="height:30px; margin-left:5px;" binding="#{input12}"  immediate="true"  onchange="validateupdatebar()" >
+     <p:ajax event="keyup" update="barnameUpdate" />
+     
+     </p:inputText>
+         <p:message id="barnameUpdate" for="bar_NameUpdate" />
+    
+      </h:panelGrid>
+  
+    </div>
+    <div align="center" id="input_button">
+       <p:commandButton id="button_updateBar" style="margin-top:10px; width:100%;color: #fff;text-shadow: 0 1px #000;background: #990012;padding: 5px;font-weight: 300;" value="Update" action="#{basicController.update(input12.value)}" onclick="PF('wdialogupdate').hide();" update="form2"/>
+        </div>
+  
+        </p:dialog>
+    
+    
+    
+  
+</h:form>
+</div>
+<h:form>           
+ 
+ 
+ 
+    <p:dialog modal="true" widgetVar="deletedialog" header="Are you sure want to delete?"  responsive="true"  closeOnEscape="true" draggable="false"  resizable="false">
+      <div align="center">
+      
+        <p:commandButton value="Yes" style="color: #fff;text-shadow: 0 1px #000;background: #990012;padding: 5px;font-weight: 300;"  action="#{basicController.delete}" />
+      
+        <p:commandButton value="No" style="color: #fff;text-shadow: 0 1px #000;background: #990012; margin-left:5px; padding: 5px;font-weight: 300;" onclick="PF('deletedialog').hide();" />
+   </div>
+    </p:dialog>
+</h:form>
+
+
+    </h:body>
+     
+</html>

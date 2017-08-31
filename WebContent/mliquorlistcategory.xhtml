@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui">
+<h:head>
+<h:outputStylesheet name="css/liquorlistcategory.css"/>
+<h:outputStylesheet name="css/viewcars.css" />
+<h:outputStylesheet name="css/font-awesome.css" />
+<h:outputStylesheet name="css/font-awesome.min.css" />
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,600,400italic,600italic,700' rel='stylesheet' type='text/css'></link>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+   
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Liquorlist Category</title>
+</h:head>
+<h:body>
+
+		<ui:insert name="header" >
+		  <ui:include src="menuheader.xhtml" />
+		</ui:insert>
+	    
+  <div class="content">
+  
+  <div align="center" id="liquorcategoryBackground">
+<p:outputLabel value="#{liquorlistCategoryController.categoryName}" />
+<div align="left" class="ui-fluid">
+<h:form >
+<p:messages />
+  <p:dataGrid columns="2" value="#{liquorlistCategoryController.liquorDataList}" var="liquorService" rows="12" paginator="true" id="liquorService"
+        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="6,12,16">
+        <h:panelGrid columns="2" style="margin-left:40px;" columnClasses="logo,detail">
+        <h:commandLink action="#{liquorlistCategoryController.nextPage(liquorService)}">
+     
+                <p:graphicImage height="75px" width="75px" url="#{liquorService.pictureURL}"/> 
+           </h:commandLink>
+ 
+            <p:outputPanel style="margin-left:40px;">
+                <h:panelGrid columns="2" cellpadding="2" >
+               
+ 
+                    <h:outputText value="Name : " />
+                    <h:outputText value="#{liquorService.liquorName}" style="font-weight: bold"/>
+ 
+                    <h:outputText value="Quantity : " />
+                    <h:outputText value="#{liquorService.liquorCapacity} ML" style="font-weight: bold"/>
+ 
+                    <h:outputText value="Category : " />
+                    <h:outputText value="#{liquorService.category}" style="font-weight: bold"/>
+                    
+                     
+                </h:panelGrid>
+            </p:outputPanel>
+        </h:panelGrid>
+        <hr />
+    </p:dataGrid>
+
+</h:form>
+</div>
+</div>
+
+  
+  </div>
+</h:body>
+</html>

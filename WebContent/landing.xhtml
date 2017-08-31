@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+<h:outputScript name="js/landing.js" />
+
+<h:outputStylesheet name="css/landing.css" />
+
+<title>DashBoard</title>
+<f:metadata>
+<!-- <f:viewAction action="#{landingController.getBarlistM}" /> -->
+    
+<!--<f:event listener="#{getBarListController.getBarlist}" type="preRenderView"  />-->
+</f:metadata>
+</h:head>
+<h:body>
+ <div id="header">
+		<ui:insert name="header" >
+		  <ui:include src="header.xhtml" />
+		</ui:insert>
+	    </div>
+
+<div class="ui-fluid">
+<!--<p:outputLabel id="landingText" value="#{landingController.userString}" /> -->
+<div align="center">
+<p:outputLabel  id="venueName" value="#{landingController.venue}"/>
+<div  id="addBar">
+
+<h:form id="form1">
+    <p:growl id="growl" showDetail="true" />
+    <p:commandButton value="Add Bar" style="width:130px; margin-top:20px;" onclick="PF('wdialog').show();" >
+    
+    </p:commandButton>
+    <h:form >
+      <p:dialog  modal="true"  id="dialog" widgetVar="wdialog" responsive="true" header="Enter Bar Name" closeOnEscape="true" draggable="false"  resizable="false">
+<h:form id="form_dialog">
+<div align="center" id="input_dialog">
+<p:panelGrid columns="3"> 
+<p:outputLabel value="Enter Bar Name : " />
+   <p:inputText id="bar_Name" value="#{basicController.bar_Name}" style="height:30px;" onchange="insertbar()" binding="#{input1}"  immediate="true"   >
+       <p:ajax event="keyup" update="barnameinsert" />
+  
+   </p:inputText>
+            <p:message id="barnameinsert" for="bar_Name" />
+   
+   </p:panelGrid>
+</div>
+<div align="center" id="input_buttonfirst">
+   <p:commandButton id="insertbar_new" value="Save" action="#{basicController.clicked(input1.value)}" onclick="PF('wdialog').hide();" update="form_dialog"/>
+</div>
+</h:form>
+        </p:dialog>
+    
+    </h:form>
+    
+  
+</h:form>
+ 
+</div>
+<div>
+
+<h:form id="form2" >
+   
+ 
+       <p:dialog modal="true" id="dialog" widgetVar="wdialogupdate" responsive="true" header="Update Bar Name" closeOnEscape="true" draggable="false"  resizable="false">
+
+  <div align="center" id="input_dialog">
+    <h:panelGrid columns="3">
+    <p:outputLabel value="Update Bar Name : " />
+  
+     <p:inputText id="bar_NameUpdate" value="#{basicController.bar_NameUpdate}" style="height:30px;" binding="#{input12}"  immediate="true"  onchange="validateupdatebar()" >
+     <p:ajax event="keyup" update="barnameUpdate" />
+     
+     </p:inputText>
+         <p:message id="barnameUpdate" for="bar_NameUpdate" />
+    
+      </h:panelGrid>
+  
+    </div>
+    <div align="center" id="input_button">
+       <p:commandButton id="button_updateBar" value="Update" action="#{basicController.update(input12.value)}" onclick="PF('wdialogupdate').hide();" update="form2"/>
+        </div>
+  
+        </p:dialog>
+    
+    
+    
+  
+</h:form>
+</div>
+
+<div class="ui-fluid" id="dataTable">
+<p:dataTable var="barService" value="#{landingController.barlists}"   rowIndexVar="index">
+    <p:column headerText="S.no">
+    <div align="center">
+    <p:outputLabel id="commandLinkItem" value="#{index + 1}" />
+    </div>
+    </p:column>
+ 
+    <p:column headerText="Bar Name">
+    <div align="center">
+            <p:outputLabel  value="#{barService.barName}" />
+    </div>
+    </p:column>
+ 
+    <p:column headerText="Created On">
+        <div align="center">
+                <p:outputLabel   value="#{barService.createdOn}"  />
+    </div>
+    </p:column>
+     <p:column headerText="Actions">
+        <div align="center">
+       
+<h:panelGrid columns="3">
+<p:commandButton value="View" action="#{landingController.BarItemClick(barService)}" />
+<p:commandButton value="Edit"  onclick="PF('wdialogupdate').show();" action="#{basicController.updatebarid(barService)}" >
+
+              
+         
+</p:commandButton>
+                <p:commandButton value="Delete"   onclick="PF('deletedialog').show();" action="#{basicController.deletebarid(barService)}" />
+
+</h:panelGrid>
+
+
+    </div>
+    </p:column>
+ 
+</p:dataTable>
+</div>
+
+
+</div>
+
+</div>
+<h:form>           
+ 
+ 
+ 
+    <p:dialog modal="true" widgetVar="deletedialog" header="Are you sure want to delete?"  responsive="true"  closeOnEscape="true" draggable="false"  resizable="false">
+      <div align="center">
+      
+        <p:commandButton value="Yes"  action="#{basicController.delete}" />
+        <p:commandButton value="No" onclick="PF('deletedialog').hide();" />
+   </div>
+    </p:dialog>
+</h:form>
+
+</h:body>
+</html>

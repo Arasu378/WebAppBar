@@ -1,0 +1,31 @@
+
+
+#div_holder{
+ margin-left: 30%;
+  margin-right: 30%;
+ margin-top:10%;
+    position: relative;
+}
+
+#register_button{
+	margin-top: 20px;
+	background-color: #4db6ac;
+	width: 100px;
+}
+#container_login{
+	margin-top: 50px;
+	width:200px;
+	margin-bottom: 50px;
+}
+#email{
+	
+	height: 30px;
+	margin-left: -50px;
+}
+#register_Text{
+	margin-top: 15px;
+}
+#button_background{
+	margin-top: 30px;
+	margin-bottom: 15px;
+}

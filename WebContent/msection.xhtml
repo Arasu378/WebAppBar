@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+<h:outputStylesheet name="css/section.css" />
+<h:outputStylesheet name="css/viewcars.css" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+
+<h:outputScript name="js/section.js" /> 
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Section List</title>
+<h:outputStylesheet name="css/font-awesome.css" />
+<h:outputStylesheet name="css/font-awesome.min.css" />
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,600,400italic,600italic,700' rel='stylesheet' type='text/css'></link>
+       
+</h:head>
+<h:body>
+
+ 
+
+ 
+  
+		<ui:insert name="header" >
+		  <ui:include src="menuheader.xhtml" />
+		</ui:insert>
+	    
+  <div class="content">
+ 
+  <div align="center" class="ui-fluid">
+<p:outputLabel  id="venueName" style="margin-bottom:10px; color:#000000;" value="#{sectionController.sectionId} Section"/>
+</div>
+
+ <div align="center">
+  <div  id="addSeciton"  align="right" style="margin-bottom:10px;" >
+
+<h:form id="form1">
+    <p:growl id="growl" showDetail="true" />
+    <p:commandButton value="Add Section" style="color: #fff;text-shadow: 0 1px #000;background: #990012;padding: 5px;font-weight: 300;"  onclick="PF('wdialog').show();" />
+  
+  
+</h:form>
+
+</div>
+   <h:form>
+      <p:dialog modal="true" id="dialog" widgetVar="wdialog" responsive="true" header="Enter Section Name" closeOnEscape="true" draggable="false"  resizable="false">
+  <h:form id="form_dialog">
+  <div align="center" id="input_dialog">
+<p:panelGrid columns="3"> 
+
+   <p:outputLabel value="Section Name: " />
+   <p:inputText id="section_Name"  onchange="insertsection()" value="#{sectionUpdateController.section_Name}" style="height:30px;" binding="#{input1}"  immediate="true"   >
+          <p:ajax event="keyup" update="sectionnameinsert" />
+   
+   </p:inputText>
+    <p:message id="sectionnameinsert" for="section_Name" />
+     
+      </p:panelGrid>
+       </div>
+       <div align="center" id="input_buttonfirst">
+                 <p:commandButton id="insertsection_new" style="color: #fff;text-shadow: 0 1px #000;background: #990012; margin-top:5px;padding: 5px;font-weight: 300;" value="Save" action="#{sectionUpdateController.clicked(input1.value)}" onclick="PF('wdialog').hide();" update="form1"/>
+       
+       </div>
+       
+        </h:form>
+        </p:dialog>
+    
+    </h:form>
+    
+ </div>
+ <h:form id="form2">
+   
+ 
+      <p:dialog id="dialog" modal="true" widgetVar="wdialogupdate" responsive="true" header="Enter Bar Name" closeOnEscape="true" draggable="false"  resizable="false">
+   
+  <div align="center" id="input_dialog">
+    <h:panelGrid columns="3">
+     <p:outputLabel value="Section Name: " />
+   <p:inputText id="section_NameUpdate" onchange="validateupdatesection()" value="#{sectionUpdateController.section_NameUpdate}" style="height:30px;" binding="#{input12}"  immediate="true"   >
+        <p:ajax event="keyup" update="sectionnameUpdate" />
+   
+   </p:inputText>
+            <p:message id="sectionnameUpdate" for="section_NameUpdate" />
+   
+    </h:panelGrid>
+    </div>
+   <div align="center" id="input_button">
+     <p:commandButton id="button_updateSection" style="color: #fff;margin-top:10px; text-shadow: 0 1px #000;background: #990012;padding: 5px;font-weight: 300;" value="Update" action="#{sectionUpdateController.update(input12.value)}" onclick="PF('wdialogupdate').hide();" update="form2"/>
+   
+   </div>
+        </p:dialog>
+    
+    
+    
+  
+</h:form>
+  <div class="ui-fluid" id="dataTable">
+<p:dataTable var="sectionService" value="#{sectionController.sectionlist}"  rowIndexVar="index">
+    <p:column headerText="S.no" style="width:50px;">
+    <div align="center">
+    <p:outputLabel id="commandLinkItem"   value="#{index+1}" />
+    </div>
+    </p:column>
+ 
+    <p:column headerText="Section Name">
+    <div align="center">
+            <p:outputLabel  value="#{sectionService.sectionName}" />
+    </div>
+    </p:column>
+ 
+    <p:column headerText="Created On">
+        <div align="center">
+                <p:outputLabel   value="#{sectionService.createdOn}"  />
+    </div>
+    </p:column>
+    <p:column headerText="Delete">
+        <div align="center">
+       
+<h:panelGrid columns="3">
+<p:commandButton value="View"  icon="fa fa-fw fa-remove" style="color: #fff;text-shadow: 0 1px #000;background: #990012;padding: 5px;font-weight: 300;"  action="#{sectionController.SectionItemClick(sectionService)}" />
+<p:commandButton value="Edit"  icon="fa fa-fw fa-remove" style="color: #fff;text-shadow: 0 1px #000;background: #990012;padding: 5px;font-weight: 300;" onclick="PF('wdialogupdate').show();" action="#{sectionUpdateController.updatesecid(sectionService)}" />
+
+                <p:commandButton value="Delete"  icon="fa fa-fw fa-remove" style="color: #fff;text-shadow: 0 1px #000;background: #990012;padding: 5px;font-weight: 300;" onclick="PF('deletedialog').show();" action="#{sectionUpdateController.deletesecid(sectionService)}"  />
+</h:panelGrid>
+
+
+    </div>
+    </p:column>
+ 
+</p:dataTable>
+</div>
+  </div>
+ 
+<h:form>           
+ 
+ 
+ 
+    <p:dialog modal="true" widgetVar="deletedialog" header="Are you sure want to delete?"  responsive="true"  closeOnEscape="true" draggable="false"  resizable="false">
+      <div align="center">
+      
+        <p:commandButton value="Yes" style="color: #fff;text-shadow: 0 1px #000;background: #990012;padding: 5px;font-weight: 300;" action="#{sectionUpdateController.delete}" />
+        <p:commandButton value="No" style="color: #fff;text-shadow: 0 1px #000;background: #990012;padding: 5px; margin-left:5px;font-weight: 300;" onclick="PF('deletedialog').hide();" />
+   </div>
+    </p:dialog>
+</h:form>
+
+
+</h:body>
+</html>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>DashBoard</title>
+</h:head>
+<h:body>
+ <div id="header">
+		<ui:insert name="header" >
+		  <ui:include src="header.xhtml" />
+		</ui:insert>
+	    </div>
+ <p:dialog id="dlg" header="Bar Name" widgetVar="levelDialog" modal="true" dynamic="true">
+       <h:form>
+        <p:outputLabel value="Enter Bar name :" />
+        <p:inputText  />
+         <p:commandButton value="Save"  oncomplete="dlg.hide();" />
+         <p:commandButton value="Cancel" onclick="dlg.hide()"/>
+       </h:form>
+     </p:dialog>
+     <h:form>
+        <p:messages/>
+           
+          <p:commandButton value="Show Dialog"  update=":dlg" oncomplete="dlg.show();" />  
+      
+     </h:form>
+</h:body>
+</html>

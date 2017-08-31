@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui">
+<h:head>
+<h:outputStylesheet name="css/addcustombottle.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Add Custom Bottle</title>
+</h:head>
+<h:body>
+ <div id="header">
+		<ui:insert name="header" >
+		  <ui:include src="header.xhtml" />
+		</ui:insert>
+	    </div>
+<div align="center" id="multipart_data">
+<h:form enctype="multipart/form-data">
+    <p:growl id="messages" showDetail="true" />
+ 
+    <p:fileUpload value="#{addCustomBottleController.file}" mode="simple" skinSimple="true"/>
+ 
+</h:form>
+</div>
+<div align="center">
+<div align="center" id="div_holder" class="ui-fluid">
+<h:form id="liquorForm">
+
+<p:panel header="Insert Liquor Data" >
+<p:messages />
+<div align="center">
+<p:graphicImage height="200px" width="200px" url="#{addCustomBottleController.content}"/> 
+
+</div>
+<h:panelGroup>
+<h:panelGrid columns="1">
+
+<h:panelGrid columns="2">
+<p:outputLabel value="Liquor Name : " />
+<p:inputText  id="liquorName" style="height: 30px;" value="#{addCustomBottleController.liquorData.liquorName}" label="Liquor Name"/>
+<p:outputLabel value="Liquor Capacity  : "/>
+<p:inputText  id="liquorCapacity" style="height: 30px;" value="#{addCustomBottleController.liquorData.liquorCapacity}" label="Liquor Capacity"/>
+<p:outputLabel value="Category : " />
+<p:inputText id="category" style="height: 30px;" value="#{addCustomBottleController.liquorData.category}" label="Category" />
+<p:outputLabel value="Sub Category : "/>
+<p:inputText id="subCategory" style="height: 30px;" value="#{addCustomBottleController.liquorData.subCategory}" label="Sub Category"/>
+<p:outputLabel  value="Shots : "/>
+<p:inputText id="shots" style="height: 30px;" value="#{addCustomBottleController.liquorData.shots}" label="Shots" />
+<p:outputLabel  value="Par Level : "/>
+<p:inputText id="parLevel" style="height: 30px;" value="#{addCustomBottleController.liquorData.parLevel}" label="Par Level"  />
+<p:outputLabel  value="Distributor Name : "/>
+<p:inputText id="distributorName" style="height: 30px;" value="#{addCustomBottleController.liquorData.distributorName}" label="Distribut Name"  />
+<p:outputLabel  value="Price Unit : "/>
+<p:inputText id="price" style="height: 30px;" value="#{addCustomBottleController.liquorData.price}" label="Price"  />
+<p:outputLabel  value="Bin Number : "/>
+<p:inputText id="binNumber" style="height: 30px;" value="#{addCustomBottleController.liquorData.binNumber}" label="Bin Number"  />
+<p:outputLabel  value="Product Code : "/>
+<p:inputText id="productCode" style="height: 30px;" value="#{addCustomBottleController.liquorData.productCode}" label="Product Code"  />
+</h:panelGrid>
+</h:panelGrid>
+
+<div align="center">
+<h:panelGrid columns="2">
+<p:commandButton id="save_button"  style="margin-top: 20px;" action="#{addCustomBottleController.save}" value="Save" update="liquorForm" />
+<p:commandButton id="cancel_button"  style="margin-top: 20px;" action="#{addCustomBottleController.cancel}" value="Cancel" update="liquorForm" />
+</h:panelGrid>
+</div>
+</h:panelGroup>
+</p:panel>
+</h:form>
+</div>
+
+
+</div>
+
+
+</h:body>
+</html>

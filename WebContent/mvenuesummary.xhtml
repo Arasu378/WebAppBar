@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui">
+<h:head>
+<h:outputStylesheet name="css/venuesummary.css" />
+<h:outputStylesheet name="css/viewcars.css" />
+<h:outputStylesheet name="css/font-awesome.css" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+
+<h:outputStylesheet name="css/font-awesome.min.css" />
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,600,400italic,600italic,700' rel='stylesheet' type='text/css'></link>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Venue Summary</title>
+</h:head>
+<h:body>
+	<ui:insert name="header" >
+		  <ui:include src="menuheader.xhtml" />
+		</ui:insert>
+		<div class="content">
+		
+		<div id="venueSummaryTitle" align="center">
+<p:outputLabel value="Venue Summary" />
+</div>
+<div  class="ui-fluid" id="venueSummaryDataTable">
+<h:form id="formVenueSummary">
+    <p:dataGrid columns="2"  rows="12" paginator="true" id="liquorService"
+        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="6,12,16" value="#{venueSummaryController.liquorDataList}" var="liquorService">
+        <h:panelGrid columns="2" style="margin-left:40px;" columnClasses="logo,detail">
+     
+                <p:graphicImage height="75px" width="75px" url="#{liquorService.pictureURL}"/> 
+           
+ 
+            <p:outputPanel style="margin-left:40px;">
+                <h:panelGrid columns="2" cellpadding="2" >
+                <h:outputText value="Id : " />
+                    <h:outputText value="#{liquorService.liquorId}" style="font-weight: bold"/>
+ 
+                    <h:outputText value="Name : " />
+                    <h:outputText value="#{liquorService.liquorName}" style="font-weight: bold"/>
+ 
+                    <h:outputText value="Quantity : " />
+                    <h:outputText value="#{liquorService.liquorCapacity}" style="font-weight: bold"/>
+ 
+                    <h:outputText value="Type : " />
+                    <h:outputText value="#{liquorService.type}" style="font-weight: bold"/>
+                    
+                     <h:outputText value="Total Bottles : " />
+                    <h:outputText value="#{liquorService.totalBottles}" style="font-weight: bold"/>
+                </h:panelGrid>
+            </p:outputPanel>
+        </h:panelGrid>
+        <hr />
+    </p:dataGrid>
+</h:form>
+
+
+</div>
+		</div>
+		
+</h:body>
+</html>

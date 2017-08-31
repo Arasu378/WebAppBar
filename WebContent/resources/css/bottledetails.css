@@ -1,0 +1,43 @@
+#venueSummaryTitle{
+	margin-top: 20px;
+}
+#venueSummaryDataTable{
+	margin-top: 15px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+#menu_form{
+	margin-left:20px;
+	 margin-right:20px; 
+	 margin-top:15px;
+}
+#bottleDetailsbackground{
+	margin-top: 25px;
+}
+#image_details{
+	margin-top: 30px;
+}
+#header_bottledetails{
+	margin-top: 10px;
+	margin-bottom: 20px;
+	
+}
+#output_slidervalue{
+	height: 50px;
+	width: 200px;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+#command_saveDetails{
+	margin-left: 30px;
+	margin-right: 20px;
+	margin-bottom:50px;
+	
+
+	
+}
+.filler{
+	  width:0%;
+    height:50px;
+    background-color:black;
+}

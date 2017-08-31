@@ -1,0 +1,147 @@
+<pretty-config xmlns="http://ocpsoft.org/schema/rewrite-config-prettyfaces" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://ocpsoft.org/schema/rewrite-config-prettyfaces
+                      http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd">
+	<url-mapping id="login">
+		<pattern value="/login" />
+		<view-id value="/login.xhtml" />
+	</url-mapping>
+<url-mapping id="registration">
+		<pattern value="/registration" />
+		<view-id value="/registration.xhtml" />
+	</url-mapping>
+	<url-mapping id="addbar">
+		<pattern value="/addbar" />
+		<view-id value="/addbar.xhtml" />
+	</url-mapping>
+	<url-mapping id="addbottles">
+		<pattern value="/addbottles" />
+		<view-id value="/addbottles.xhtml" />
+	</url-mapping>
+	<url-mapping id="addcustombottle">
+		<pattern value="/addcustombottle" />
+		<view-id value="/addcustombottle.xhtml" />
+	</url-mapping>
+	<url-mapping id="basic">
+		<pattern value="/basic" />
+		<view-id value="/basic.xhtml" />
+	</url-mapping>
+	<url-mapping id="bottledetails">
+		<pattern value="/bottledetails" />
+		<view-id value="/bottledetails.xhtml" />
+	</url-mapping>
+	<url-mapping id="bottleslist">
+		<pattern value="/bottleslist" />
+		<view-id value="/bottleslist.xhtml" />
+	</url-mapping>
+	<url-mapping id="changepassword">
+		<pattern value="/changepassword" />
+		<view-id value="/changepassword.xhtml" />
+		</url-mapping>
+	<url-mapping id="distributorslist">
+		<pattern value="/distributorslist" />
+		<view-id value="/distributorslist.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="filenotfound">
+		<pattern value="/filenotfound" />
+		<view-id value="/filenotfound.xhtml" />
+	</url-mapping>
+	<url-mapping id="landing">
+		<pattern value="/landing" />
+		<view-id value="/landing.xhtml" />
+	</url-mapping>
+	<url-mapping id="liquorcategoryinsert">
+		<pattern value="/liquorcategoryinsert" />
+		<view-id value="/liquorcategoryinsert.xhtml" />
+	</url-mapping>
+	<url-mapping id="liquorlistcategory">
+		<pattern value="/liquorlistcategory" />
+		<view-id value="/liquorlistcategory.xhtml" />
+	</url-mapping>
+	<url-mapping id="myprofile">
+		<pattern value="/myprofile" />
+		<view-id value="/myprofile.xhtml" />
+	</url-mapping>
+	<url-mapping id="parlist">
+		<pattern value="/parlist" />
+		<view-id value="/parlist.xhtml" />
+		</url-mapping>
+	<url-mapping id="redefineddashboard">
+		<pattern value="/redefineddashboard" />
+		<view-id value="/redefineddashboard.xhtml" />
+	</url-mapping>
+	<url-mapping id="registrationWithVal">
+		<pattern value="/registrationWithVal" />
+		<view-id value="/registrationWithVal.xhtml" />
+	</url-mapping>
+	<url-mapping id="section">
+		<pattern value="/section" />
+		<view-id value="/section.xhtml" />
+	</url-mapping>
+	<url-mapping id="totalusers">
+		<pattern value="/totalusers" />
+		<view-id value="/totalusers.xhtml" />
+	</url-mapping>
+	<url-mapping id="venuesummary">
+		<pattern value="/venuesummary" />
+		<view-id value="/venuesummary.xhtml" />
+	</url-mapping>
+	<url-mapping id="mlanding">
+		<pattern value="/mlanding" />
+		<view-id value="/mlanding.xhtml" />
+	</url-mapping>
+	<url-mapping id="mlogin">
+		<pattern value="/mlogin" />
+		<view-id value="/mlogin.xhtml" />
+	</url-mapping>
+	<url-mapping id="msection">
+		<pattern value="/msection" />
+		<view-id value="/msection.xhtml" />
+	</url-mapping>
+	<url-mapping id="mvenuesummary">
+		<pattern value="/mvenuesummary" />
+		<view-id value="/mvenuesummary.xhtml" />
+	</url-mapping>
+	<url-mapping id="mparlist">
+		<pattern value="/mparlist" />
+		<view-id value="/mparlist.xhtml" />
+	</url-mapping>
+	<url-mapping id="mmyprofile">
+		<pattern value="/mmyprofile" />
+		<view-id value="/mmyprofile.xhtml" />
+	</url-mapping>
+	<url-mapping id="mchangepassword">
+		<pattern value="/mchangepassword" />
+		<view-id value="/mchangepassword.xhtml" />
+	</url-mapping>
+	<url-mapping id="mbottleslist">
+		<pattern value="/mbottleslist" />
+		<view-id value="/mbottleslist.xhtml" />
+	</url-mapping>
+	<url-mapping id="maddbottles">
+		<pattern value="/maddbottles" />
+		<view-id value="/maddbottles.xhtml" />
+	</url-mapping>
+	<url-mapping id="mregistration">
+		<pattern value="/mregistration" />
+		<view-id value="/mregistration.xhtml" />
+	</url-mapping>
+	<url-mapping id="mliquorlistcategory">
+		<pattern value="/mliquorlistcategory" />
+		<view-id value="/mliquorlistcategory.xhtml" />
+	</url-mapping>
+		<url-mapping id="mliquorcategoryinsert">
+		<pattern value="/mliquorcategoryinsert" />
+		<view-id value="/mliquorcategoryinsert.xhtml" />
+	</url-mapping>
+	<url-mapping id="maddcustombottle">
+		<pattern value="/maddcustombottle" />
+		<view-id value="/maddcustombottle.xhtml" />
+	</url-mapping>
+	<url-mapping id="mbottledetails">
+		<pattern value="/mbottledetails" />
+		<view-id value="/mbottledetails.xhtml" />
+	</url-mapping>
+	
+</pretty-config>

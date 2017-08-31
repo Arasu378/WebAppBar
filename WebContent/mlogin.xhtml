@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<h:outputStylesheet name="css/login.css"/>
+<h:outputScript name="js/registrationWithVal.js" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+
+<h:outputStylesheet name="css/font-awesome.css" />
+<h:outputStylesheet name="css/font-awesome.min.css" />
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,600,400italic,600italic,700' rel='stylesheet' type='text/css'></link>
+       
+<title>Login</title>
+</h:head>
+<h:body style="background-color: #BDBDBD;">
+
+<div align="center" id="div_holder" class="ui-fluid">
+<h:form id="loginForm" >
+<p:panel header="Login">
+<p:messages />
+<div align="center">
+<h:panelGroup>
+<h:panelGrid columns="3" style="margin-top:15px;margin-bottom:5px;" padding="15px;">
+
+
+<p:outputLabel value="Email* : "/>
+<p:inputText  id="email" style="height: 30px; margin-left:5px;" value="#{userController.registrationUser.email}" label="Email" onchange="validateEmail()" required="true">
+<p:ajax event="keyup" update="useremailMsg" />
+</p:inputText>
+<p:message id="useremailMsg" for="email" />
+<p:outputLabel value="Password* : " style="margin-top:18px;"/>
+<p:password  id="password" style="height: 30px; margin-top:15px; margin-left:5px;" value="#{userController.registrationUser.password}" onchange="validatepassword()" label="Password">
+<p:ajax event="keyup" update="userpasswordMsg" />
+</p:password>
+<p:message id="userpasswordMsg" for="password" style="margin-top:15px" />
+
+</h:panelGrid>
+</h:panelGroup>
+</div>
+<div align="center" id="button_background" class="ui-fluid" style="margin-top:30px; margin-bottom:15px; width: 200px;" >
+
+<p:commandButton  id="register_button"  style="margin-top:10px; width:100%;color: #fff;text-shadow: 0 1px #000;background: #990012;padding: 5px;font-weight: 300;"  action="#{userController.login}" value="Login" update="loginForm"   />
+<div align="center" style="margin-top:10px;">
+<h:link  id="register_Text" value="Register Here.."  outcome="mregistration" />
+
+
+</div>
+
+
+
+
+</div>
+
+</p:panel>
+
+
+</h:form>
+
+ 
+</div>
+
+</h:body>
+</html>

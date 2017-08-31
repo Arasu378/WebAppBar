@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui">
+<h:head>
+<h:outputStylesheet name="css/liquorcategoryinsert.css"/>
+<h:outputStylesheet name="css/font-awesome.css" />
+<h:outputStylesheet name="css/font-awesome.min.css" />
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,600,400italic,600italic,700' rel='stylesheet' type='text/css'></link>
+ <h:outputStylesheet name="css/viewcars.css" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Insert Liquor</title>
+</h:head>
+<h:body>
+
+		<ui:insert name="header" >
+		  <ui:include src="menuheader.xhtml" />
+		</ui:insert>
+	    
+  <div class="content">
+  
+  <p:outputLabel value="#{liquorCategoryInsertController.name}" />
+
+<div align="center" id="div_holder" class="ui-fluid">
+<h:form id="liquorForm">
+
+<p:panel >
+  
+<p:messages />
+<div align="center">
+<p:graphicImage height="200px" width="200px" style="margin-bottom:25px;" url="#{liquorCategoryInsertController.pic}"/> 
+
+</div>
+<h:panelGroup>
+
+
+<h:panelGrid columns="2" >
+<p:outputLabel value="Liquor Name : " style="height: 30px;margin-bottom:10px; margin-right:5px;"  />
+<p:inputText  id="liquorName" style="height: 30px;margin-bottom:10px;" value="#{liquorCategoryInsertController.name}" label="Liquor Name"/>
+<p:outputLabel value="Liquor Capacity  : " style="height: 30px;margin-bottom:10px; margin-right:5px;" />
+<p:inputText  id="liquorCapacity" style="height: 30px;margin-bottom:10px;" value="#{liquorCategoryInsertController.quantity}" label="Liquor Capacity"/>
+<p:outputLabel value="Category : " style="height: 30px;margin-bottom:10px; margin-right:5px;" />
+<p:inputText id="category" style="height: 30px;margin-bottom:10px;" value="#{liquorCategoryInsertController.category}" label="Category" />
+<p:outputLabel value="Sub Category : " style="height: 30px;margin-bottom:10px; margin-right:5px;" />
+<p:inputText id="subCategory" style="height: 30px;margin-bottom:10px;" value="#{liquorCategoryInsertController.subcategory}" label="Sub Category"/>
+<p:outputLabel  value="Shots : " style="height: 30px;margin-bottom:10px; margin-right:5px;" />
+<p:inputText id="shots" style="height: 30px;margin-bottom:10px;" value="#{liquorCategoryInsertController.liqData.shots}" label="Shots" />
+<p:outputLabel  value="Par Level : " style="height: 30px;margin-bottom:10px; margin-right:5px;" />
+<p:inputText id="parLevel" style="height: 30px;margin-bottom:10px;" value="#{liquorCategoryInsertController.liqData.parLevel}" label="Par Level"  />
+<p:outputLabel  value="Distributor Name : " style="height: 30px;margin-bottom:10px; margin-right:5px;" />
+<p:inputText id="distributorName" style="height: 30px;margin-bottom:10px;" value="#{liquorCategoryInsertController.liqData.distributorName}" label="Distribut Name"  />
+<p:outputLabel  value="Price Unit : " style="height: 30px;margin-bottom:10px; margin-right:5px;" />
+<p:inputText id="price" style="height: 30px;margin-bottom:10px;" value="#{liquorCategoryInsertController.liqData.price}" label="Price"  />
+<p:outputLabel  value="Bin Number : " style="height: 30px;margin-bottom:10px; margin-right:5px;" />
+<p:inputText id="binNumber" style="height: 30px;margin-bottom:10px;" value="#{liquorCategoryInsertController.liqData.binNumber}" label="Bin Number"  />
+<p:outputLabel  value="Product Code : " style="height: 30px;margin-bottom:10px; margin-right:5px;" />
+<p:inputText id="productCode" style="height: 30px;margin-bottom:10px;" value="#{liquorCategoryInsertController.liqData.productCode}" label="Product Code"  />
+</h:panelGrid>
+
+<div align="center">
+<h:panelGrid columns="2">
+<p:commandButton id="save_button" style="color: #fff; width: 100%;text-shadow: 0 1px #000;background: #990012;padding: 5px; margin-top:20px;font-weight: 300;margin-right:15px;" action="#{liquorCategoryInsertController.save}" value="Save" update="liquorForm" />
+<p:commandButton id="cancel_button"  style="color: #fff; width:100%; text-shadow: 0 1px #000;background: #990012;padding: 5px; margin-top:20px;font-weight: 300;" action="#{liquorCategoryInsertController.cancel}" value="Cancel" update="liquorForm" />
+</h:panelGrid>
+</div>
+</h:panelGroup>
+</p:panel>
+</h:form>
+</div>
+  </div>
+</h:body>
+</html>

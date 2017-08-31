@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui">
+<h:head>
+<h:outputStylesheet name="css/totalusers.css" />
+<h:outputScript name="js/materialize.js" />
+<h:outputScript name="js/materialize.min" />
+<h:outputStylesheet name="css/materialize.css" />
+<h:outputStylesheet name="css/materialize.min.css" />
+<title>Total Users</title>
+</h:head>
+<h:body>
+<div align="center" id="background_text">
+<p:outputLabel value="Total Registered Users"/>
+</div>
+<div align="center" id="div_holder_datatable" class="ui-fluid">
+<p:dataTable var="userService" value="#{totalUsersController.userlist}">
+    <p:column headerText="UserProfileId">
+    <div align="center" class="ui-fluid">
+    <p:commandLink id="commandLinkItem"  value="#{userService.userProfileId}" />
+    </div>
+    </p:column>
+ 
+    <p:column headerText="User Name">
+    <div align="center" class="ui-fluid">
+            <p:outputLabel  value="#{userService.firstName}" />
+    </div>
+    </p:column>
+ 
+    <p:column headerText="Venue">
+        <div align="center" class="ui-fluid">
+                <p:outputLabel   value="#{userService.venueSummary}"  />
+    </div>
+    </p:column>
+   <p:column headerText="Email">
+        <div align="center" class="ui-fluid">
+                <p:outputLabel   value="#{userService.email}"  />
+    </div>
+    </p:column>
+      <p:column headerText="Mobile Number">
+        <div align="center" class="ui-fluid">
+                <p:outputLabel   value="#{userService.phone}"  />
+    </div>
+    </p:column>
+ 
+ 
+</p:dataTable>
+
+
+</div>
+
+</h:body>
+</html>

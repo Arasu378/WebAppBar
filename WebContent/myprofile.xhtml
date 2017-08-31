@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui">
+<h:head>
+<h:outputStylesheet name="css/profile.css"/>
+<h:outputScript name="js/myprofile.js" />
+<title>My Profile</title>
+</h:head>
+<h:body>
+ <div id="header">
+		<ui:insert name="header" >
+		  <ui:include src="header.xhtml" />
+		</ui:insert>
+	    </div>
+<div  align="center" id="profileBackground">
+<p:outputLabel  id="welcome" value="My profile"/>
+<div align="center" id="div_holder" class="ui-fluid">
+<h:form id="profileForm">
+<p:panel >
+<p:messages />
+<h:panelGroup>
+<h:panelGrid columns="3">
+<p:outputLabel value="First Name : " />
+<p:inputText  id="firstName" style="height: 30px;" value="#{profileController.fname}" label="First Name">
+<p:ajax event="keyup" update="fn" />
+
+</p:inputText>
+<p:message id="fn" for="firstName"/>
+
+<p:outputLabel value="Last Name : "/>
+<p:inputText  id="lastName" style="height: 30px;" value="#{profileController.lname}" label="Last Name">
+<p:ajax event="keyup" update="ln" />
+
+</p:inputText>
+<p:message id="ln" for="lastName"/>
+
+<p:outputLabel value="MobileNumber : " />
+<p:inputText id="mobileNumber" style="height: 30px;" value="#{profileController.mnumber}" label="Mobile Number" >
+<p:ajax event="keyup" update="mn" />
+
+</p:inputText>
+<p:message id="mn" for="mobileNumber"/>
+
+<p:outputLabel value="Email : "/>
+<p:inputText id="email" style="height: 30px;" onchange="validateEmail()" value="#{profileController.eemail}" label="Email">
+<p:ajax event="keyup" update="useremailMsg" />
+
+</p:inputText>
+<p:message id="useremailMsg" for="email"/>
+
+<p:outputLabel  value="Venue Name : "/>
+<p:inputText id="venueName" style="height: 30px;" value="#{profileController.vname}" label="Venue Summary" >
+<p:ajax event="keyup" update="vn" />
+
+</p:inputText>
+<p:message id="vn" for="venueName"/>
+
+ <p:outputLabel for="country" value="Country: " />
+            <p:selectOneMenu id="country" value="#{profileController.country}" style="width:210px">
+                <f:selectItem itemLabel="Select Country" itemValue="" noSelectionOption="true" />
+                <f:selectItems value="#{profileController.countries}" />
+            </p:selectOneMenu>
+
+
+
+</h:panelGrid>
+<div align="center">
+<h:panelGrid columns="1">
+<p:commandButton id="update_button" action="#{profileController.updateProfile}" style="margin-top: 20px;" value="Save" update="profileForm" />
+<h:link value="Cancel " style="margin-top:10px;" outcome="landing" />
+</h:panelGrid>
+</div>
+</h:panelGroup>
+</p:panel>
+</h:form>
+</div>
+
+</div>
+
+
+</h:body>
+</html>

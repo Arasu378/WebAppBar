@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<h:outputStylesheet name="css/header.css" />
+<h:outputScript name="js/header.js" />
+
+</h:head>
+<h:body>
+  <ui:composition>
+  <div  class="ui-fluid">
+<h:form id="menu_form">
+	<p:menubar style="background-color: #dedddd;">
+		<p:menuitem value="Home" url="landing"></p:menuitem>
+		<p:menuitem value="Venue Summary" url="venuesummary"></p:menuitem>
+		<p:menuitem value="Par List" url="parlist"></p:menuitem>
+		<p:menuitem value="My Profile" url="myprofile"></p:menuitem>
+			<p:menuitem value="Change Password" url="changepassword"></p:menuitem>
+	 <f:facet name="options">
+	              <p:commandButton  value="Logout" icon="ui-icon-extlink"  action="#{headerController.logout}" />
+	 
+ <!-- 
+ 
+  -->
+        </f:facet>
+	</p:menubar>
+</h:form>
+</div>
+  </ui:composition>
+</h:body>
+</html>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui">
+<h:head>
+<h:outputStylesheet name="css/registration.css"/>
+<h:outputScript name="js/registrationWithVal.js" />
+<h:outputScript name="js/materialize.js" />
+<h:outputScript name="js/materialize.min" />
+<h:outputStylesheet name="css/materialize.css" />
+<h:outputStylesheet name="css/materialize.min.css" />
+<title>Registration</title>
+</h:head>
+<h:body>
+<div align="center" id="div_holder" class="ui-fluid">
+<h:form id="registrationForm">
+<p:panel header="Registration">
+<p:messages />
+<h:panelGroup>
+<h:panelGrid columns="3">
+<p:outputLabel value="First Name : " />
+<p:inputText  id="firstName" style="height: 30px;" value="#{userController.registrationUser.firstName}" label="First Name" required="true">
+<p:ajax event="keyup" update="userfirstNameMsg" />
+</p:inputText>
+<p:message id="userfirstNameMsg" for="firstName" />
+<p:outputLabel value="Last Name : "/>
+<p:inputText  id="lastName" style="height: 30px;" value="#{userController.registrationUser.lastName}" label="Last Name">
+<p:ajax event="keyup" update="userlastNameMsg" />
+</p:inputText>
+<p:message id="userlastNameMsg" for="lastName" />
+<p:outputLabel value="MobileNumber : " />
+<p:inputText id="mobileNumber" style="height: 30px;" value="#{userController.registrationUser.phone}" label="Mobile Number" >
+<p:ajax event="keyup" update="usermobileNumberMsg" /> 
+</p:inputText>
+<p:message id="usermobileNumberMsg" for="mobileNumber" />
+<p:outputLabel value="Email : "/>
+<p:inputText id="email" style="height: 30px;" value="#{userController.registrationUser.email}" label="Email" onchange="validateEmail()">
+<p:ajax event="keyup" update="useremailMsg" />
+</p:inputText>
+<p:message id="useremailMsg" for="email"/>
+<p:outputLabel  value="Venue Name : "/>
+<p:inputText id="venueName" style="height: 30px;" value="#{userController.registrationUser.venueSummary}" label="Venue Summary" >
+<p:ajax event="keyup" update="uservenueNameMsg" />
+</p:inputText>
+<p:message id ="uservenueNameMsg" for="venueName"/>
+<p:outputLabel  value="Country : "/>
+<p:inputText id="country" style="height: 30px;" value="#{userController.registrationUser.country}" label="Country"  >
+<p:ajax event="keyup" update="usercountryMsg" />
+</p:inputText>
+<p:message id="usercountryMsg" for="country" />
+</h:panelGrid>
+<h:panelGrid columns="1">
+<p:commandButton id="register_button"  style="margin-top: 20px;" action="#{userController.register}" value="Register" update="registrationForm" />
+</h:panelGrid>
+</h:panelGroup>
+</p:panel>
+</h:form>
+</div>
+</h:body>
+</html>

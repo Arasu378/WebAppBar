@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui">
+<h:head>
+<h:outputStylesheet name="css/venuesummary.css" />
+<title>Par List</title>
+</h:head>
+<h:body>
+
+ <div id="header">
+		<ui:insert name="header" >
+		  <ui:include src="header.xhtml" />
+		</ui:insert>
+	    </div>
+<div id="venueSummaryTitle" align="center">
+<p:outputLabel value="Par List" />
+</div>
+<div  class="ui-fluid" id="venueSummaryDataTable">
+<h:form id="formVenueSummary">
+    <p:repeat value="#{parListController.liquorDataList}" var="liquorService">
+        <h:panelGrid columns="2" style="margin-left:40px;" columnClasses="logo,detail">
+     
+                <p:graphicImage height="75px" width="75px" url="#{liquorService.pictureURL}"/> 
+           
+ 
+            <p:outputPanel style="margin-left:40px;">
+                <h:panelGrid columns="2" cellpadding="2" >
+                <h:outputText value="Id : " />
+                    <h:outputText value="#{liquorService.liquorId}" style="font-weight: bold"/>
+ 
+                    <h:outputText value="Name : " />
+                    <h:outputText value="#{liquorService.liquorName}" style="font-weight: bold"/>
+ 
+                    <h:outputText value="Quantity : " />
+                    <h:outputText value="#{liquorService.liquorCapacity}" style="font-weight: bold"/>
+ 
+                     <h:outputText value="Total Bottles : " />
+                    <h:outputText value="#{liquorService.totalBottles}" style="font-weight: bold"/>
+                </h:panelGrid>
+            </p:outputPanel>
+        </h:panelGrid>
+        <hr />
+    </p:repeat>
+</h:form>
+
+
+</div>
+
+
+</h:body>
+</html>
