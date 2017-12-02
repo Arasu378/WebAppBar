@@ -16,6 +16,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
@@ -211,6 +212,21 @@ public String login(){
 		              System.out.println("Login Value: "+success+" / "+message);
 		              if (success){              
 		          		context.getExternalContext().getSessionMap().put("userDetails",output );
+		          		try{
+			          		JSONObject objs=new JSONObject(output);
+			          		JSONArray arr=objs.getJSONArray("UserList");
+			          		for(int i=0;i<arr.length();i++){
+			          			JSONObject first=arr.getJSONObject(i);
+			          			String AuthorizationKey=first.getString("AuthorizationKey");
+				          		context.getExternalContext().getSessionMap().put("AuthorizationKey",AuthorizationKey );
+
+			          		}
+
+		          		}catch(Exception e){
+		          			e.printStackTrace();
+		          		}
+
+		          		
 		          		//logout paste this
 		          		//FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 
@@ -294,7 +310,27 @@ private String LoginAPI(String email,String password){
 			while ((output = br.readLine()) != null) {
 				System.out.println(output);
 				finaloutput=output;
+     			
 			}
+			 FacesContext context = FacesContext.getCurrentInstance();
+
+				try{
+	          		JSONObject objs=new JSONObject(finaloutput);
+	          		JSONArray arr=objs.getJSONArray("output");
+	          		for(int i=0;i<arr.length();i++){
+	          			JSONObject first=arr.getJSONObject(i);
+	          			String AuthorizationKey=first.getString("AuthorizationKey");
+
+		          		context.getExternalContext().getSessionMap().put("AuthorizationKey",AuthorizationKey );
+
+	          		}
+	          		Object	authKey=context.getExternalContext().getSessionMap().get("AuthorizationKey");
+	          		authorizationKey=(String)authKey;
+	          		System.out.println("Login auth : "+authorizationKey);
+	          			
+       		}catch(Exception e){
+       			e.printStackTrace();
+       		}
 
 			conn.disconnect();
 		 

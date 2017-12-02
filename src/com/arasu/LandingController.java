@@ -75,6 +75,7 @@ public LandingController(){
 		userDetails=context.getExternalContext().getSessionMap().get("userDetails");
 		Object	authKey=context.getExternalContext().getSessionMap().get("AuthorizationKey");
 		authorizationKey=(String)authKey;
+		System.out.println("KeyAuth : "+authorizationKey);
 		userString=(String) userDetails;
 		try{
 			JSONObject obj=new JSONObject(userString);
@@ -100,6 +101,9 @@ public LandingController(){
                        String modify=first.getString("ModifiedOn");
                        int id=first.getInt("Id");
                        String password=first.getString("Password");
+                       String authdKey=first.getString("AuthorizationKey");
+                       System.out.println("AuthKey : "+authdKey);
+                       authorizationKey=authdKey;
 
                    }
                    
@@ -148,6 +152,7 @@ private void getBarListItems(String UserProfileId){
 		conn.setRequestMethod("GET");
 		conn.setRequestProperty("Accept", "application/json");
    		conn.setRequestProperty("Authorization", "Kyros "+authorizationKey);
+   		System.out.println("Header value : "+authorizationKey);
 
 		if (conn.getResponseCode() != 200) {
 			throw new RuntimeException("Failed : HTTP error code : "
