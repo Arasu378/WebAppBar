@@ -28,6 +28,8 @@ import model.User;
 @ViewScoped
 public class TotalUsersController {
 	 private List<User> userlist=new ArrayList<User>();
+	 private String authorizationKey=null;
+
 	 @ManagedProperty("#{userService}")
 	 private User service;
 	public User getService() {
@@ -47,12 +49,17 @@ public class TotalUsersController {
 		getUsersListAPI();
 	}
 	private void getUsersListAPI() {
+		 FacesContext context = FacesContext.getCurrentInstance();
+
+		Object	authKey=context.getExternalContext().getSessionMap().get("AuthorizationKey");
+		authorizationKey=(String)authKey;
 		String geturl=Utils.END_URL+"/userservice/users";
 		try{
 			  URL url = new URL(geturl);
 		        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 				conn.setRequestMethod("GET");
 				conn.setRequestProperty("Accept", "application/json");
+		   		conn.setRequestProperty("Authorization", "Kyros "+authorizationKey);
 
 				if (conn.getResponseCode() != 200) {
 					throw new RuntimeException("Failed : HTTP error code : "

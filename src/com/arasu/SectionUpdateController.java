@@ -31,6 +31,7 @@ public class SectionUpdateController implements Serializable {
 	private String section_Name;
 	private int UserProfileId;
 	private int barid;
+	private String authorizationKey=null;
 
 	private String section_NameUpdate;
 	public SectionUpdateController(){
@@ -39,6 +40,8 @@ public class SectionUpdateController implements Serializable {
 			Object secid=context.getExternalContext().getSessionMap().get("BarId");
 			barid=(Integer)secid;
 			UserProfileId=(Integer) userDetails;
+			Object	authKey=context.getExternalContext().getSessionMap().get("AuthorizationKey");
+			authorizationKey=(String)authKey;
 	}
 	public String getSection_Name() {
 		return section_Name;
@@ -110,6 +113,8 @@ public class SectionUpdateController implements Serializable {
 	        URL url = new URL(posturl);
 	   		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 	   		conn.setDoOutput(true);
+	   		conn.setRequestProperty("Authorization", "Kyros "+authorizationKey);
+
 	   		conn.setRequestMethod("POST");
 	   		conn.setRequestProperty("Content-Type", "application/json");
 	   		java.io.OutputStream os = conn.getOutputStream();
@@ -185,6 +190,8 @@ public class SectionUpdateController implements Serializable {
 		        URL url = new URL(puturl);
 		   		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		   		conn.setDoOutput(true);
+		   		conn.setRequestProperty("Authorization", "Kyros "+authorizationKey);
+
 		   		conn.setRequestMethod("PUT");
 		   		conn.setRequestProperty("Content-Type", "application/json");
 		   		java.io.OutputStream os = conn.getOutputStream();
@@ -264,6 +271,7 @@ public class SectionUpdateController implements Serializable {
 		        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 				conn.setRequestMethod("GET");
 				conn.setRequestProperty("Accept", "application/json");
+		   		conn.setRequestProperty("Authorization", "Kyros "+authorizationKey);
 
 				if (conn.getResponseCode() != 200) {
 					throw new RuntimeException("Failed : HTTP error code : "

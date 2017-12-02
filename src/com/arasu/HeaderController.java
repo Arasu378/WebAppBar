@@ -19,6 +19,8 @@ public class HeaderController implements Serializable {
 	/**
 	 * 
 	 */
+	private String authorizationKey=null;
+
 	private static final long serialVersionUID = 1L;
 	public String logout(){
 		System.out.println("Logout!");
@@ -30,6 +32,8 @@ public class HeaderController implements Serializable {
 		 FacesContext context = FacesContext.getCurrentInstance();
 			String value=(String)context.getExternalContext().getSessionMap().get("userDetails");
 			System.out.println("userDetails header : "+value);
+			Object	authKey=context.getExternalContext().getSessionMap().get("AuthorizationKey");
+			authorizationKey=(String)authKey;
 			if(value!=null){
 				try{
 					JSONObject obj=new JSONObject(value);

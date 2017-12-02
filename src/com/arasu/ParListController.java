@@ -27,6 +27,8 @@ public class ParListController implements Serializable {
 	/**
 	 * 
 	 */
+	private String authorizationKey=null;
+
 	private static final long serialVersionUID = 1L;
 	private List<LiquorData> liquorDataList=new ArrayList<LiquorData>();
     @ManagedProperty("#{liquorService}")
@@ -39,6 +41,8 @@ public class ParListController implements Serializable {
     	 FacesContext context = FacesContext.getCurrentInstance();
  		userDetails=context.getExternalContext().getSessionMap().get("userDetails");
  		userString=(String) userDetails;
+ 		Object	authKey=context.getExternalContext().getSessionMap().get("AuthorizationKey");
+ 		authorizationKey=(String)authKey;
  		try{
  			JSONObject obj=new JSONObject(userString);
                     JSONArray array=obj.getJSONArray("UserList");
@@ -64,6 +68,7 @@ public class ParListController implements Serializable {
 		        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 				conn.setRequestMethod("GET");
 				conn.setRequestProperty("Accept", "application/json");
+		   		conn.setRequestProperty("Authorization", "Kyros "+authorizationKey);
 
 				if (conn.getResponseCode() != 200) {
 					throw new RuntimeException("Failed : HTTP error code : "

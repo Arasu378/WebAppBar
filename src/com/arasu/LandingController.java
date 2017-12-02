@@ -27,7 +27,6 @@ import model.Bar;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
 
@@ -46,6 +45,7 @@ public class LandingController implements Serializable{
 	public String venue;
 	private String val;
 	private String addBar;
+	private String authorizationKey=null;
 
 	public String UserProfileId;
  private List<Bar> barlist=new ArrayList<Bar>();
@@ -73,6 +73,8 @@ public void closeDialog() {
 public LandingController(){
 	 FacesContext context = FacesContext.getCurrentInstance();
 		userDetails=context.getExternalContext().getSessionMap().get("userDetails");
+		Object	authKey=context.getExternalContext().getSessionMap().get("AuthorizationKey");
+		authorizationKey=(String)authKey;
 		userString=(String) userDetails;
 		try{
 			JSONObject obj=new JSONObject(userString);
@@ -138,12 +140,14 @@ public void getBarlistM(){
 }
 private void getBarListItems(String UserProfileId){
     String stringurl =Utils.END_URL+"/getBarbyUserProfileId/"+UserProfileId;
+    
     System.out.println("End Url: "+stringurl);
     try{
         URL url = new URL(stringurl);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		conn.setRequestMethod("GET");
 		conn.setRequestProperty("Accept", "application/json");
+   		conn.setRequestProperty("Authorization", "Kyros "+authorizationKey);
 
 		if (conn.getResponseCode() != 200) {
 			throw new RuntimeException("Failed : HTTP error code : "

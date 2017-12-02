@@ -49,12 +49,15 @@ public class LiquorCategoryInsertController implements Serializable {
      int UserProfileId;
      private int BarId;
      private int SectionId;
+     private String authorizationKey=null;
+
      @ManagedProperty("#{liquorService}")
      private LiquorData liqData;
 public LiquorCategoryInsertController(){
 	FacesContext context = FacesContext.getCurrentInstance();
 	this.liqData=new LiquorData();
-	 
+	Object	authKey=context.getExternalContext().getSessionMap().get("AuthorizationKey");
+	authorizationKey=(String)authKey;
 	name=(String)context.getExternalContext().getSessionMap().get("LiquorNameInsert");
 	quantity=(String)context.getExternalContext().getSessionMap().get("LiquorQuantityInsert");
 	category=(String)context.getExternalContext().getSessionMap().get("CategoryInsert");
@@ -190,6 +193,8 @@ private String saveliquordata(byte[] bytearrayprofile, int userProfileId2, int b
 	        HttpClient httpclient = new DefaultHttpClient();
 	        String url = Utils.END_URL+ "/insertUserLiquorlistM";
 	        HttpPost httppost = new HttpPost(url);
+	        httppost.setHeader("Authorization", "Kyros "+authorizationKey);
+
 	        try {
 	            AndroidMultiPartEntity entity = new AndroidMultiPartEntity(
 	                    new AndroidMultiPartEntity.ProgressListener() {

@@ -30,12 +30,16 @@ public class VenueSummaryController implements Serializable{
 	private List<LiquorData> liquorDataList=new ArrayList<LiquorData>();
 	    @ManagedProperty("#{liquorService}")
 	    private LiquorData liquorData;
+	    private String authorizationKey=null;
+
 	    private String userString;
 	    private Object userDetails;
 	    private String UserProfileId;
 	    @PostConstruct
 	    public void getLiquourData() {
 	    	 FacesContext context = FacesContext.getCurrentInstance();
+	    	 Object	authKey=context.getExternalContext().getSessionMap().get("AuthorizationKey");
+	    		authorizationKey=(String)authKey;
 	 		userDetails=context.getExternalContext().getSessionMap().get("userDetails");
 	 		userString=(String) userDetails;
 	 		try{
@@ -63,6 +67,7 @@ public class VenueSummaryController implements Serializable{
 			        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 					conn.setRequestMethod("GET");
 					conn.setRequestProperty("Accept", "application/json");
+			   		conn.setRequestProperty("Authorization", "Kyros "+authorizationKey);
 
 					if (conn.getResponseCode() != 200) {
 						throw new RuntimeException("Failed : HTTP error code : "

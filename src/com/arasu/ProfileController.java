@@ -29,6 +29,8 @@ public class ProfileController implements Serializable {
 	/**
 	 * 
 	 */
+	private String authorizationKey=null;
+
 	private static final long serialVersionUID = 1L;
 	private String userString;
 	private Object userDetails;
@@ -47,6 +49,8 @@ public class ProfileController implements Serializable {
 		FacesContext context = FacesContext.getCurrentInstance();
 		userDetails=context.getExternalContext().getSessionMap().get("userDetails");
 		userString=(String) userDetails;
+		Object	authKey=context.getExternalContext().getSessionMap().get("AuthorizationKey");
+		authorizationKey=(String)authKey;
 		try{
 			JSONObject obj=new JSONObject(userString);
                    JSONArray array=obj.getJSONArray("UserList");
@@ -323,6 +327,8 @@ private String POSTUPDATEAPI(String firstName, String lastName,
      	conn.setDoOutput(true);
      	conn.setRequestMethod("PUT");
      	conn.setRequestProperty("Content-Type", "application/json");
+   		conn.setRequestProperty("Authorization", "Kyros "+authorizationKey);
+
      	java.io.OutputStream os = conn.getOutputStream();
      	os.write(input.getBytes());
      	os.flush();

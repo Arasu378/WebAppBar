@@ -34,11 +34,14 @@ public class BasicController implements Serializable {
 private String bar_Name ;
 private int UserProfileId;
 private String bar_NameUpdate;
+private String authorizationKey=null;
 
 public BasicController(){
 	 FacesContext context = FacesContext.getCurrentInstance();
 	Object	userDetails=context.getExternalContext().getSessionMap().get("UserProfileId");
 	UserProfileId=(Integer) userDetails;
+	Object	authKey=context.getExternalContext().getSessionMap().get("AuthorizationKey");
+	authorizationKey=(String)authKey;
 }
 public String getBar_Name() {
 	return bar_Name;
@@ -100,6 +103,8 @@ private String CreateBarAPI(String inputvalue, int userProfileId2) {
         URL url = new URL(posturl);
    		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
    		conn.setDoOutput(true);
+   		conn.setRequestProperty("Authorization", "Kyros "+authorizationKey);
+
    		conn.setRequestMethod("POST");
    		conn.setRequestProperty("Content-Type", "application/json");
    		java.io.OutputStream os = conn.getOutputStream();
@@ -189,6 +194,7 @@ private String DeleteBarAPI(int barId,int proid) {
 	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Accept", "application/json");
+	   		conn.setRequestProperty("Authorization", "Kyros "+authorizationKey);
 
 			if (conn.getResponseCode() != 200) {
 				throw new RuntimeException("Failed : HTTP error code : "
@@ -266,6 +272,8 @@ private String updateBarAPI(String inputvalue, int barid, int proid) {
 	   		conn.setDoOutput(true);
 	   		conn.setRequestMethod("PUT");
 	   		conn.setRequestProperty("Content-Type", "application/json");
+	   		conn.setRequestProperty("Authorization", "Kyros "+authorizationKey);
+
 	   		java.io.OutputStream os = conn.getOutputStream();
 	   		os.write(input.getBytes());
 	   		os.flush();

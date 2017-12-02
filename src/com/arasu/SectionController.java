@@ -28,6 +28,8 @@ import model.Section;
 public class SectionController {
 	private int sectionId;
 	private int UserProfileId;
+	private String authorizationKey=null;
+
 	 private List<Section> sectionlist=new ArrayList<Section>();
 	 @ManagedProperty("#{sectionService}")
 	 private Section service;
@@ -37,6 +39,8 @@ public class SectionController {
 		Object proid=context.getExternalContext().getSessionMap().get("UserProfileId");
 		sectionId=(Integer) secid;
 		UserProfileId=(Integer)proid;
+		Object	authKey=context.getExternalContext().getSessionMap().get("AuthorizationKey");
+		authorizationKey=(String)authKey;
 		System.out.println("Section Controller class : "+sectionId+" / "+UserProfileId);
 		GetSectionList(sectionId,UserProfileId);
 	}
@@ -48,6 +52,7 @@ public class SectionController {
 		        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 				conn.setRequestMethod("GET");
 				conn.setRequestProperty("Accept", "application/json");
+		   		conn.setRequestProperty("Authorization", "Kyros "+authorizationKey);
 
 				if (conn.getResponseCode() != 200) {
 					throw new RuntimeException("Failed : HTTP error code : "

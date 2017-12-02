@@ -19,17 +19,23 @@ import javax.faces.context.FacesContext;
 
 
 
+
+
 import utils.Utils;
 
 @ManagedBean
 @SessionScoped
 public class GetBarListController implements Serializable {
 	private static final long serialVersionUID = 1L;
+	private String authorizationKey=null;
+
 @PostConstruct
 public void getBarlist(){
 	 FacesContext context = FacesContext.getCurrentInstance();
 		 String	UserProfileId=(String)context.getExternalContext().getSessionMap().get("UserProfileId");
 		 System.out.println("UserProfileId : "+UserProfileId);
+		 Object	authKey=context.getExternalContext().getSessionMap().get("AuthorizationKey");
+			authorizationKey=(String)authKey;
 		if(UserProfileId!=null){
 			getBarListItems(UserProfileId);
 		}else{
@@ -48,6 +54,7 @@ private void getBarListItems(String UserProfileId){
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		conn.setRequestMethod("GET");
 		conn.setRequestProperty("Accept", "application/json");
+   		conn.setRequestProperty("Authorization", "Kyros "+authorizationKey);
 
 		if (conn.getResponseCode() != 200) {
 			throw new RuntimeException("Failed : HTTP error code : "

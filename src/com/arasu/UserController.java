@@ -37,6 +37,7 @@ private User registrationUser;
 private String val;
 private String country; 
 private Map<String,String> countries;
+private String authorizationKey=null;
 
 public UserController(){
 	this.registrationUser=new User();
@@ -123,7 +124,10 @@ public String register(){
 private String RegisterPOSTApi(String firstName, String lastName,
 		String mobileNumber, String email, String venueName, String country) {
 	String finaloutput=null;
+	 FacesContext context = FacesContext.getCurrentInstance();
 
+	Object	authKey=context.getExternalContext().getSessionMap().get("AuthorizationKey");
+	authorizationKey=(String)authKey;
 	
 	if(firstName!=null &&!firstName.isEmpty()&&lastName!=null &&!lastName.isEmpty()&&mobileNumber!=null &&!mobileNumber.isEmpty()&&
 			email!=null &&!email.isEmpty()&&venueName!=null &&!venueName.isEmpty()&&country!=null &&!country.isEmpty()){
@@ -154,6 +158,8 @@ private String RegisterPOSTApi(String firstName, String lastName,
      		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
      		conn.setDoOutput(true);
      		conn.setRequestMethod("POST");
+       		conn.setRequestProperty("Authorization", "Kyros "+authorizationKey);
+
      		conn.setRequestProperty("Content-Type", "application/json");
      		java.io.OutputStream os = conn.getOutputStream();
      		os.write(input.getBytes());
@@ -274,6 +280,8 @@ private String LoginAPI(String email,String password){
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setDoOutput(true);
 			conn.setRequestMethod("POST");
+	   		conn.setRequestProperty("Authorization", "Kyros "+authorizationKey);
+
 			conn.setRequestProperty("Content-Type", "application/json");
 			java.io.OutputStream os = conn.getOutputStream();
 			os.write(input.getBytes());

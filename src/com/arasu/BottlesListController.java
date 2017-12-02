@@ -32,11 +32,15 @@ public class BottlesListController implements Serializable {
     private LiquorData liquorData;
     private int UserProfileId;
     private int SectionID;
+    private String authorizationKey=null;
+
     @PostConstruct
     public void getLiquourData() {
    	 FacesContext context = FacesContext.getCurrentInstance();
 		Object userDetails=context.getExternalContext().getSessionMap().get("UserProfileId");
 		Object secId=context.getExternalContext().getSessionMap().get("SectionId");
+		Object	authKey=context.getExternalContext().getSessionMap().get("AuthorizationKey");
+		authorizationKey=(String)authKey;
 		int Proid=(Integer)userDetails;
 		int sectionid=(Integer)secId;
 		SectionID=sectionid;
@@ -53,6 +57,7 @@ public class BottlesListController implements Serializable {
 		        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 				conn.setRequestMethod("GET");
 				conn.setRequestProperty("Accept", "application/json");
+		   		conn.setRequestProperty("Authorization", "Kyros "+authorizationKey);
 
 				if (conn.getResponseCode() != 200) {
 					throw new RuntimeException("Failed : HTTP error code : "

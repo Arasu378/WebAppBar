@@ -22,6 +22,8 @@ import model.User;
 @SessionScoped
 public class ChangePasswordController {
 	private User registrationUser;
+	private String authorizationKey=null;
+
 	public ChangePasswordController(){
 		this.registrationUser=new User();
 	}
@@ -38,6 +40,8 @@ public class ChangePasswordController {
 		 FacesContext context = FacesContext.getCurrentInstance();
 		 String userDetails=((String) context.getExternalContext().getSessionMap().get("userDetails"));
 		 String UserProfileId="0";
+		 Object	authKey=context.getExternalContext().getSessionMap().get("AuthorizationKey");
+			authorizationKey=(String)authKey;
 		 try{
 			 JSONObject obj=new JSONObject(userDetails);
              JSONArray array=obj.getJSONArray("UserList");
@@ -124,6 +128,8 @@ public class ChangePasswordController {
     					conn.setDoOutput(true);
     					conn.setRequestMethod("PUT");
     					conn.setRequestProperty("Content-Type", "application/json");
+    			   		conn.setRequestProperty("Authorization", "Kyros "+authorizationKey);
+
     					java.io.OutputStream os = conn.getOutputStream();
     					os.write(input.getBytes());
     					os.flush();

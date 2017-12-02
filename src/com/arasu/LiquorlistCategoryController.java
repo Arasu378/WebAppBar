@@ -35,10 +35,14 @@ public class LiquorlistCategoryController implements Serializable {
     private LiquorData liquorData;
 	private static final long serialVersionUID = 1L;
 	private String categoryName;
+	private String authorizationKey=null;
+
 public LiquorlistCategoryController(){
 	 FacesContext context = FacesContext.getCurrentInstance();
 		Object	userDetails=context.getExternalContext().getSessionMap().get("CategoryBottle");
 		categoryName=(String)userDetails;
+		Object	authKey=context.getExternalContext().getSessionMap().get("AuthorizationKey");
+		authorizationKey=(String)authKey;
 }
 public String getCategoryName() {
 	return categoryName;
@@ -102,6 +106,7 @@ private String getCategoryliquorlist(String categoryName2) {
 	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Accept", "application/json");
+			conn.setRequestProperty("Authorization", "Kyros "+authorizationKey);
 
 			if (conn.getResponseCode() != 200) {
 				throw new RuntimeException("Failed : HTTP error code : "

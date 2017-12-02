@@ -6,6 +6,6 @@ public class Utils {
 	
 	//below is for developement(testing) url
 	
-	public static final String END_URL="http://developmentkyrosbar.ap-south-1.elasticbeanstalk.com/rest";
+	public static final String END_URL="http://210.18.177.47:1234/Bar/rest";
 
 }
